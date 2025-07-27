@@ -4,12 +4,14 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/version-3.0.0-green.svg)
-![Bash](https://img.shields.io/badge/bash-5.0%2B-orange.svg)
+![Bash](https://img.shields.io/badge/bash-3.2%2B-orange.svg)
 ![Certbot](https://img.shields.io/badge/certbot-2.0.0%2B-red.svg)
+![Production Ready](https://img.shields.io/badge/production-ready-brightgreen.svg)
+![Cross Platform](https://img.shields.io/badge/cross--platform-linux%20|%20bsd%20|%20macos-blue.svg)
 
-**Production-grade bash script for managing Let's Encrypt SSL certificates for IP addresses**
+**Enterprise-grade Swiss Army Knife for managing Let's Encrypt SSL certificates for IP addresses**
 
-[Features](#features) • [Requirements](#requirements) • [Installation](#installation) • [Usage](#usage) • [FAQ](#faq) • [Contributing](#contributing)
+[Features](#features) • [Quick Start](#quick-start) • [Documentation](#documentation) • [Installation](#installation) • [Usage](#usage) • [FAQ](#faq) • [Contributing](#contributing)
 
 </div>
 
@@ -36,34 +38,75 @@ This project is made possible by [Let's Encrypt](https://letsencrypt.org/), a fr
 - **ACME Profile Support**: Requires Certbot 2.0.0+ with [ACME profile support](https://letsencrypt.org/2025/01/09/acme-profiles/)
 - **Public IPs Only**: Private or local IP addresses are not supported
 
+## 🚀 Quick Start
+
+```bash
+# Clone and setup
+git clone https://github.com/yourusername/letsencrypt-ip-manager.git
+cd letsencrypt-ip-manager
+chmod +x letsencrypt-ip-ssl-manager.sh
+
+# Interactive setup (recommended for new users)
+sudo ./letsencrypt-ip-ssl-manager.sh --setup
+
+# Or quick certificate generation
+sudo ./letsencrypt-ip-ssl-manager.sh -i YOUR_PUBLIC_IP -e your@email.com
+```
+
+## 📚 Documentation
+
+- **[📖 User Manual](docs/USER_MANUAL.md)** - Complete usage guide
+- **[🔧 Installation Guide](docs/INSTALLATION.md)** - Step-by-step setup
+- **[🛠️ API Reference](docs/API_REFERENCE.md)** - All commands and options
+- **[🔍 Troubleshooting](docs/TROUBLESHOOTING.md)** - Common issues and solutions
+- **[🛡️ Security Guide](docs/SECURITY.md)** - Security best practices
+- **[🚀 Deployment Examples](docs/DEPLOYMENT.md)** - Production deployment scenarios
+
 ## ✨ Features
 
-- 🌐 **Full IP Support**: IPv4 and IPv6 addresses
-- 🔒 **Automatic Validation**: Ensures public IP addresses only
-- ⚡ **Aggressive Renewal**: Every 4 hours for 6-day certificates
-- 🐧 **Multi-Distribution**: Debian/Ubuntu and RHEL/CentOS/Fedora
-- 📊 **Comprehensive Logging**: Separate logs for operations, errors, and audit
-- 🛡️ **Security First**: Input validation, lock files, secure permissions
-- 🚀 **Production Ready**: Error handling, systemd timers, cron fallback
-- 🎨 **User Friendly**: Colored output, progress indicators, helpful messages
+### 🌟 Core Capabilities
+- 🌐 **Universal IP Support**: IPv4 and IPv6 addresses with comprehensive validation
+- 🔒 **Smart Validation**: Ensures public IP addresses only, rejects private/reserved ranges
+- ⚡ **Aggressive Renewal**: Every 4 hours for 6-day certificates with multiple fallback mechanisms
+- 🎯 **Interactive Setup**: User-friendly configuration wizard with persistent settings
+
+### 🛡️ Enterprise Security
+- 🔐 **Input Sanitization**: Comprehensive validation preventing injection attacks
+- 🔒 **Secure Permissions**: Proper file permissions and access controls
+- 📋 **Audit Logging**: Complete audit trail for compliance and monitoring
+- 🚨 **Emergency Recovery**: Automatic backup and restore capabilities
+
+### 🌍 Cross-Platform Excellence  
+- 🐧 **Linux Distributions**: Debian, Ubuntu, RHEL, CentOS, Fedora, SUSE, Arch, Alpine, Gentoo
+- 🔺 **BSD Systems**: FreeBSD, OpenBSD, NetBSD, DragonFlyBSD  
+- 🍎 **macOS Support**: Limited support with Homebrew
+- ⚙️ **Multi-Init Systems**: SystemD, OpenRC, SysV, BSD RC, launchd
+
+### 🔧 Swiss Army Knife Tools
+- 📊 **System Monitoring**: Comprehensive status reports and health checks
+- 🗃️ **Backup Management**: Automated backup rotation with configurable retention
+- 🔄 **Auto-Recovery**: Intelligent error recovery with rollback capabilities
+- 🎨 **User Experience**: Colored output, progress indicators, helpful messages
+- 📈 **Dependency Management**: Automatic dependency detection and installation
+- 🔍 **Integrity Checking**: System integrity verification and validation
 
 ## 📋 Requirements
 
 ### System Requirements
-- Linux-based operating system (Debian/Ubuntu or RHEL/CentOS/Fedora)
-- Root or sudo access
-- Public IP address (not behind NAT)
-- Port 80 accessible from the internet
+- **Operating System**: Linux (Debian/Ubuntu/RHEL/CentOS/Fedora/SUSE/Arch/Alpine/Gentoo), BSD (FreeBSD/OpenBSD/NetBSD), or macOS
+- **Privileges**: Root or sudo access for certificate operations
+- **Network**: Public IP address (IPv4 or IPv6) accessible from the internet
+- **Firewall**: Port 80 accessible for HTTP-01 challenge validation
 
 ### Software Requirements
-- Bash 5.0+
-- Certbot 2.0.0+ (with ACME profile support)
-- Python 3.6+
-- curl, openssl, host utilities
+- **Shell**: Bash 3.2+ (compatible with older systems)
+- **Certbot**: 2.0.0+ with ACME profile support (auto-installed if missing)
+- **Python**: 3.6+ (usually pre-installed)
+- **Utilities**: curl, openssl, DNS tools (auto-detected and installed)
 
 ## 🚀 Installation
 
-### Quick Install
+### 🎯 Automated Installation (Recommended)
 
 ```bash
 # Clone the repository
@@ -71,10 +114,25 @@ git clone https://github.com/yourusername/letsencrypt-ip-manager.git
 cd letsencrypt-ip-manager
 
 # Make the script executable
-chmod +x letsencrypt-ip-manager.sh
+chmod +x letsencrypt-ip-ssl-manager.sh
 
-# Install certbot with profile support
-sudo ./letsencrypt-ip-manager.sh --install
+# Interactive setup (handles everything automatically)
+sudo ./letsencrypt-ip-ssl-manager.sh --setup
+```
+
+### ⚡ Quick Installation
+
+```bash
+# Clone and install dependencies
+git clone https://github.com/yourusername/letsencrypt-ip-manager.git
+cd letsencrypt-ip-manager
+chmod +x letsencrypt-ip-ssl-manager.sh
+
+# Install certbot and dependencies automatically
+sudo ./letsencrypt-ip-ssl-manager.sh --install
+
+# Configure settings interactively
+sudo ./letsencrypt-ip-ssl-manager.sh --configure
 ```
 
 ### Manual Installation
@@ -104,64 +162,99 @@ sudo ./letsencrypt-ip-manager.sh --install
 
 ## 📖 Usage
 
-### Basic Commands
+### 🎯 Essential Commands
 
 ```bash
-# Check available ACME profiles
-sudo ./letsencrypt-ip-manager.sh --check-profiles
+# Interactive setup for new users
+sudo ./letsencrypt-ip-ssl-manager.sh --setup
 
-# Obtain certificate for IPv4 address
-sudo ./letsencrypt-ip-manager.sh -i 203.0.113.10 -e admin@example.com
+# Get certificate for IPv4 address  
+sudo ./letsencrypt-ip-ssl-manager.sh -i 203.0.113.10 -e admin@example.com
 
-# Obtain certificate for IPv6 address
-sudo ./letsencrypt-ip-manager.sh -i 2001:db8::1 -e admin@example.com
+# Get certificate for IPv6 address
+sudo ./letsencrypt-ip-ssl-manager.sh -i 2001:db8::1 -e admin@example.com
 
 # Setup automatic renewal (CRITICAL for 6-day certs!)
-sudo ./letsencrypt-ip-manager.sh --setup-renewal
+sudo ./letsencrypt-ip-ssl-manager.sh --setup-renewal
 
-# List certificates and check expiration
-sudo ./letsencrypt-ip-manager.sh --list
+# Check system status and health
+sudo ./letsencrypt-ip-ssl-manager.sh --status
 
-# Force renewal of certificates
-sudo ./letsencrypt-ip-manager.sh --force-renew
+# View current configuration
+./letsencrypt-ip-ssl-manager.sh --show-config
 ```
 
-### Command Reference
+### 🔧 Management Commands
 
-| Command | Description |
-|---------|-------------|
-| `-i, --ip IP_ADDRESS` | Public IP address for certificate |
-| `-e, --email EMAIL` | Email for certificate notifications |
-| `-w, --webroot PATH` | Webroot path for HTTP-01 challenge |
-| `--install` | Install certbot with profile support |
-| `--renew` | Renew existing certificates |
-| `--force-renew` | Force renewal of all certificates |
-| `--setup-renewal` | Configure automatic renewal |
-| `--list` | List certificates and expiration status |
-| `--check-profiles` | Show available ACME profiles |
-| `-h, --help` | Show help message |
-| `-v, --version` | Show version information |
-| `--debug` | Enable debug logging |
+```bash
+# List all certificates and expiration status
+sudo ./letsencrypt-ip-ssl-manager.sh --list
+
+# Force renewal of all certificates
+sudo ./letsencrypt-ip-ssl-manager.sh --force-renew
+
+# Check available ACME profiles
+sudo ./letsencrypt-ip-ssl-manager.sh --check-profiles
+
+# Create manual backup
+sudo ./letsencrypt-ip-ssl-manager.sh --backup
+
+# Emergency recovery mode
+sudo ./letsencrypt-ip-ssl-manager.sh --emergency
+
+# System integrity check
+./letsencrypt-ip-ssl-manager.sh --integrity-check
+```
+
+### 📚 Complete Command Reference
+
+| Command | Description | Root Required |
+|---------|-------------|---------------|
+| **Certificate Operations** |
+| `-i, --ip IP_ADDRESS` | Public IP address (IPv4 or IPv6) for certificate | ✅ |
+| `-e, --email EMAIL` | Email address for certificate notifications | ✅ |
+| `-w, --webroot PATH` | Webroot path for HTTP-01 challenge (default: /var/www/html) | ✅ |
+| **Interactive Setup** |
+| `--setup` | Quick interactive setup for new users | ✅ |
+| `--configure` | Interactive configuration wizard | ✅ |
+| `--show-config` | Display current configuration | ❌ |
+| **Management Operations** |
+| `--install` | Install certbot with profile support | ✅ |
+| `--renew` | Renew existing IP certificates | ✅ |
+| `--force-renew` | Force renewal of all certificates | ✅ |
+| `--setup-renewal` | Configure automatic renewal (every 4 hours) | ✅ |
+| `--list` | List all certificates and expiration status | ✅ |
+| `--check-profiles` | Show available ACME profiles | ✅ |
+| **Information & Diagnostics** |
+| `-h, --help` | Show comprehensive help message | ❌ |
+| `-v, --version` | Show version information | ❌ |
+| `--status` | Generate comprehensive system status report | ❌ |
+| `--integrity-check` | Perform system integrity verification | ❌ |
+| `--debug` | Enable debug logging for troubleshooting | ❌ |
+| **Maintenance & Recovery** |
+| `--backup` | Create manual backup of configuration and certificates | ✅ |
+| `--restore` | Interactive restore from backup | ✅ |
+| `--emergency` | Emergency recovery mode with guided restoration | ✅ |
 
 ### Complete Workflow Example
 
 ```bash
-# 1. Install the tool
-sudo ./letsencrypt-ip-manager.sh --install
+# 1. Clone and setup (recommended)
+git clone https://github.com/yourusername/letsencrypt-ip-manager.git
+cd letsencrypt-ip-manager
+chmod +x letsencrypt-ip-ssl-manager.sh
+sudo ./letsencrypt-ip-ssl-manager.sh --setup
 
-# 2. Verify your IP is public and port 80 is open
+# 2. Or manual steps
+sudo ./letsencrypt-ip-ssl-manager.sh --install
 curl -4 icanhazip.com  # Check your public IPv4
 sudo ufw allow 80/tcp  # Open port 80 if using ufw
+sudo ./letsencrypt-ip-ssl-manager.sh -i YOUR_PUBLIC_IP -e your-email@example.com
+sudo ./letsencrypt-ip-ssl-manager.sh --setup-renewal
 
-# 3. Obtain certificate
-sudo ./letsencrypt-ip-manager.sh -i YOUR_PUBLIC_IP -e your-email@example.com
-
-# 4. Setup automatic renewal (MANDATORY!)
-sudo ./letsencrypt-ip-manager.sh --setup-renewal
-
-# 5. Verify renewal is working
-sudo systemctl status certbot-ip-renew.timer
-sudo ./letsencrypt-ip-manager.sh --list
+# 3. Verify everything is working
+sudo ./letsencrypt-ip-ssl-manager.sh --status
+sudo ./letsencrypt-ip-ssl-manager.sh --list
 ```
 
 ## 📁 File Locations
